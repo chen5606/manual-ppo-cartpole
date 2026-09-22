@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b1a15d3-915b-4816-aaaa-57f190c2d3a9" name="更改" comment="初始化强化学习项目,最基本环境搭建-一代">
-      <change afterPath="$PROJECT_DIR$/src/play.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
+    <list default="true" id="1b1a15d3-915b-4816-aaaa-57f190c2d3a9" name="更改" comment="调用强化学习小车摆杆项目">
+      <change afterPath="$PROJECT_DIR$/src/ppo/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ppo/agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ppo/buffer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ppo/network.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/play.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/play.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789916558915</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="调用强化学习小车摆杆项目">
+      <option name="closed" value="true" />
+      <created>1789985385083</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1789985385083</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +153,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="初始化强化学习项目,最基本环境搭建-一代" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化强化学习项目,最基本环境搭建-一代" />
+    <MESSAGE value="调用强化学习小车摆杆项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="调用强化学习小车摆杆项目" />
   </component>
 </project>

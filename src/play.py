@@ -1,34 +1,71 @@
-from stable_baselines3 import PPO
+import torch
 
 from src.environment import create_env
+from src.ppo.network import ActorCritic
 from src.train import MODEL_PATH
 
 
 def evaluate(episodes=5):
-    """加载训练好的模型并显示运行效果。"""
+    checkpoint = torch.load(
+        MODEL_PATH,
+        map_location="cpu",
+        weights_only=False,
+    )
+
+    network = ActorCritic(
+        observation_dim=checkpoint["observation_dim"],
+        action_dim=checkpoint["action_dim"],
+    )
+
+    network.load_state_dict(
+        checkpoint["model_state_dict"]
+    )
+
+    network.eval()
 
     env = create_env(render_mode="human")
-    model = PPO.load(MODEL_PATH)
 
     for episode in range(episodes):
         observation, info = env.reset()
-        total_reward = 0
+        episode_return = 0.0
 
         terminated = False
         truncated = False
 
         while not (terminated or truncated):
-            action, state = model.predict(
+            observation_tensor = torch.as_tensor(
                 observation,
-                deterministic=True,
-            )
+                dtype=torch.float32,
+            ).unsqueeze(0)
 
-            observation, reward, terminated, truncated, info = env.step(action)
-            total_reward += float(reward)
+            with torch.no_grad():
+                action_distribution, _ = network(
+                    observation_tensor
+                )
+
+                # 播放时直接选择概率最大的动作
+                action = torch.argmax(
+                    action_distribution.probs,
+                    dim=-1,
+                ).item()
+
+            (
+                observation,
+                reward,
+                terminated,
+                truncated,
+                info,
+            ) = env.step(action)
+
+            episode_return += float(reward)
 
         print(
-            f"第 {episode + 1} 局，"
-            f"总奖励：{total_reward}"
+            f"第{episode + 1}局，"
+            f"总奖励：{episode_return}"
         )
 
     env.close()
+
+
+if __name__ == "__main__":
+    evaluate(episodes=5)
